@@ -57,6 +57,8 @@ route.post("/createuser",
         } catch (err) {
             console.log(err)
             res.status(500).send("Internal Server Error")
+            console.log(authtoken)
+            console.log(user)
         }
 
     })
