@@ -17,7 +17,10 @@ app.use("/api/auth" , require("./routes/auth"))
 app.use("/api/note" , require("./routes/note"))
 
 const port = process.env.PORT || 5000 //so that heroku can set its own port there
-
+app.get('/', (req, res) => {
+  
+  res.send('Hello World!')
+})
 
 // if(process.env.NODE_ENV=="production"){
 //   app.use(express.static("Client/build"))
