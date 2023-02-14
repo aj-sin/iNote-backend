@@ -107,7 +107,8 @@ route.post("/loginuser",
         } catch (error) {
             console.log(error)
             res.status(500).send("Internaljghjghjgfhnv Server Error")
-
+            console.log(authtoken)
+            console.log(user)
         }
 
     })
