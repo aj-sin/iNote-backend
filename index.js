@@ -17,6 +17,13 @@ app.use("/api/auth" , require("./routes/auth"))
 app.use("/api/note" , require("./routes/note"))
 
 const port = process.env.PORT || 5000 //so that heroku can set its own port there
+
+app.use(
+  cors({
+    origin:["http://localhost:3000", "https://notter.onrender.com/"]
+  })
+)
+
 app.get('/', (req, res) => {
   
   res.send('Hello World!')

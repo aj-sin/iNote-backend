@@ -83,6 +83,7 @@ route.post("/loginuser",
         //2. The correct password assciated to the email has been entered or not
         const { email, password } = req.body
         let success=false;
+        console.log(req.body)
         try {
             const user = await User.findOne({ email })
             if (!user) {
