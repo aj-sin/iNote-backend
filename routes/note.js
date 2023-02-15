@@ -9,7 +9,7 @@ route.get("/fetchallnote", fetchuser, async (req, res) => {
 
     try {
         const userid = req.user
-        const notes = await Note.find({ user: userid.user })
+        const notes = await Note.find({ user: userid })
         res.send(notes)
     } catch (err) {
         console.log(err)
@@ -32,10 +32,13 @@ route.post("/addnote", fetchuser, [
         }
 
         const { title, discription, tag } = req.body//fetching data from req.body through destructuring
-
+        console.log("***********ADD***************")
+       console.log(req.user)
+       console.log(req.body)
         const notes = new Note({//putting the data into Note Schema and creating an object 
-            user: req.user.user, title, discription, tag
+            user: req.user, title, discription, tag
         })
+        console.log(notes)
         const savednote = await notes.save()//saving the object in the data base
         res.send(savednote)
     }
@@ -54,6 +57,8 @@ route.put("/updatenote/:id", fetchuser, async (req, res) => {//this id part in t
          }else{
             newnote.title = "Add title"
          }
+        console.log("***********UPDATE***************")
+
         if (discription.trim().length) { newnote.discription = discription
          }else{
             newnote.discription = "Add Description"
@@ -68,7 +73,7 @@ route.put("/updatenote/:id", fetchuser, async (req, res) => {//this id part in t
             return res.status(404).send("not found")
         }
 
-        if (note.user.toString() !== req.user.user) {//allows updation only if the user owns the note
+        if (note.user.toString() !== req.user) {//allows updation only if the user owns the note
             return res.status(401).send("Invalid Request")
         }
 
@@ -85,11 +90,17 @@ route.put("/deletenote/:id", fetchuser, async (req, res) => {//this id part in t
     try {
         //it checks weather the entered id note is there or not
         let note = await Note.findById(req.params.id)
+        console.log(req.param.id)
         if (!note) {
             return res.status(404).send("not found")
         }
+        console.log("***********DELETE***************")
+        console.log(note)
+        console.log(note.user)
+        console.log(note.user.toString())
+        console.log(req.user)
         //allows updation only if the user owns the note
-        if (note.user.toString() !== req.user.user) {
+        if (note.user.toString() !== req.user) {
             return res.status(401).send("Invalid Request")
         }
 
