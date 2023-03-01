@@ -116,7 +116,7 @@ route.post("/loginuser",
 // ROUTE 3: fetching user data using:Post /api/auth/getuser :login required 
 // Here we are gonna user a middleware 
 
-route.post("/getuser", fetchuser, async (req, res) => {
+route.get("/getuser", fetchuser, async (req, res) => {
 
     try {
         const userid = req.user

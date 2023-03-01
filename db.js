@@ -4,7 +4,7 @@ const mongoose= require("mongoose")
 dotenv.config({path:"./config.env"})
 
 // const mongoURI="mongodb://127.0.0.1:27017"//|only for production
-const mongoURI=process.env.DATABASE //|when deploying use this
+const mongoURI=`mongodb+srv://ajitsingh:${process.env.DATABASE}@notter.llgkjyg.mongodb.net/?retryWrites=true&w=majority`//|when deploying use this
 
 mongoose.set('strictQuery', true);
 

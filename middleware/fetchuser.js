@@ -30,7 +30,7 @@ const fetchuser = (req, res, next) => {
         next()//allow to continue to next middleware or route
     } catch (error) {
         res.status(401).send({ error: "Token Has been compramised" })
-
+        // console.log(data)
     }
 }
 
